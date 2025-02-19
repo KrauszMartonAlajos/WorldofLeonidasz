@@ -39,16 +39,13 @@ exports.loginUser = async (req, res, next) =>
     const { name, password } = req.body;
 
     const user = await userService.getUser(name);
-
+    console.log(user.ID);
     if(await bcrypt.compare(password, user.password))
     {
-        const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: "30m" });
-
-        res.status(200).json(token);
+        res.status(200).json({name: name, ID: user.ID});
     }
     else
     {
         res.status(400).send("Wrong password");
     }
 }
-
