@@ -18,6 +18,16 @@ class CharacterRepository {
     async getAll() {
         return await this.Characters.findAll();
     }
+
+    async createCharacter(data)
+    {
+        console.log(data);
+        const newCharacter = await this.Characters.build(data);
+
+        await newCharacter.save();
+        
+        return newCharacter;
+    }
 }
 
 module.exports = new CharacterRepository(db);

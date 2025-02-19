@@ -11,5 +11,10 @@ class CharacterService
     {
         return await characterRepository.getAll();
     }
+
+    async createCharacter(data)
+    {
+        return await characterRepository.createCharacter(data);
+    }
 }    
 module.exports = new CharacterService();
